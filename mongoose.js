@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const dotenv = require('dotenv').config();
 
 module.exports = () => {
-	const db = mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`)
+	const db = mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`)
 	const UserSchema = new Schema({
 		email: {
 			type: String, required: true,
