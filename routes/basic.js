@@ -16,7 +16,7 @@ const mongod = require('mongodb');
 const dotenv = require('dotenv').config();
 const ObjectId = mongod.ObjectId;
 const mongo = mongod.MongoClient;
-const mongoURI = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}`;
+const mongoURI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 
 const createToken = (auth) => {
 	return jwt.sign({
