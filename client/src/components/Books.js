@@ -73,13 +73,16 @@ export default class Books extends Component {
 		return(
 			<div className='books'>
 				<div className='level level-books' id='title-level'>
-					<div className='level-item has-text-centered'>
-						Title
-					</div>
-					<div className='level-item has-text-centered author'>
-						Author
+					<div className='level-item'>
+						<div className='column is-6 has-text-centered'>
+							Title
+						</div>
+						<div className='column is-6 has-text-centered author'>
+							Author
+						</div>
 					</div>
 				</div>
+
 				{books.map((book, index) => ( 
 						<Item title={book.title} author={book.author || 'unknown'} url={book._id} key={index} />
 				))
