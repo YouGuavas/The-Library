@@ -13,7 +13,7 @@ export default class Books extends Component {
 			displayBooks: [] 
 		}
 	}
-	getBooks() {
+	getBooks = () => {
 		getBooksData().then(books => {
 			this.setState({
 				books
@@ -25,7 +25,7 @@ export default class Books extends Component {
 			});
 		});
 	}
-	setPage(page) {
+	setPage = (page) => {
 		this.setState({
 			page: page
 		}, () => {
@@ -34,7 +34,7 @@ export default class Books extends Component {
 				})
 			});
 	}
-	incrementPage() {
+	incrementPage = () => {
 		this.state.page < this.state.numPages-1 ? (
 		this.setState({
 			page: this.state.page+1
@@ -45,7 +45,7 @@ export default class Books extends Component {
 			})
 		) : null;
 	}
-	decrementPage() {
+	decrementPage = () => {
 		this.state.page > 0 ? (
 		this.setState({
 			page: this.state.page-1

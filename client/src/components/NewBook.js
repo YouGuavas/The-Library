@@ -28,7 +28,7 @@ export default class NewBook extends Component {
 		newBook(this.state);
 		window.location.replace(window.location.origin);
 	}
-	toggleHidden = t => {
+	toggleHidden = (t) => {
 		document.getElementById(t).classList.toggle('hidden');
 	}
 	render() {
