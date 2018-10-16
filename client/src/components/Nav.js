@@ -34,7 +34,7 @@ export default class Nav extends Component {
 							{this.props.isAuthed === true ? <a href={`https://twitter.com/${this.props.user.username}`} target='_blank' id='twitterUser'><img className='twitterAvi' src={this.props.user.picture}/>@{this.props.user.username}</a> : null}
 							<Link to='/' onClick={this.handleClickItem} className='navbar-item'>Home</Link>
 							{this.props.isAuthed === true ? <Link to='/newbook' onClick={this.handleClickItem} className='navbar-item'>New Book</Link> : null}
-							{this.props.isAuthed === true ? <Link to='/' onClick={this.logout} className='navbar-item'>Logout</Link> : <TwitterLogin className='navbar-item twitterer' loginUrl='/api/auth/twitter' onFailure={this.handleFail} onSuccess={this.handleSuccess} requestTokenUrl='/api/auth/twitter/reverse' /> }
+							{this.props.isAuthed === true ? <Link to='/' onClick={this.logout} className='navbar-item'>Logout</Link> : <TwitterLogin className='navbar-item twitterer' loginUrl={encodeURI(`https://gentle-escarpment-47289.herokuapp.com:${process.env.PORT}/api/auth/twitter`)} onFailure={this.handleFail} onSuccess={this.handleSuccess} requestTokenUrl={{encodeURI(`https://gentle-escarpment-47289.herokuapp.com:${process.env.PORT}/api/auth/twitter/reverse`} /> }
 						</div>
 					</div>
 				</nav>
