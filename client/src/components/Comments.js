@@ -33,14 +33,19 @@ class NewComment extends Component {
 	}
 	handleSubmit = () => {
 		const search = window.location.pathname.split('/')[2];
-		this.state.comment.length > 1 ? newComment(search, this.state) : alert('Please type out a comment.')
+		this.state.comment.length > 1 ? ( 
+			newComment(search, this.state),
+			this.setState({
+				comment: ''
+			})
+		) : alert('Please type out a comment.')
 	}
 	render() {
 		return (
 			<article className='media'>
 				<figure className='media-left'>
 					<p className='image is-64x64'>
-						<img src={this.props.user.picture}/>
+						<img src={this.props.user.picture} className='commenterAvatar' />
 					</p>
 				</figure>
 				<div className='media-content'>
