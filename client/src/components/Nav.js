@@ -8,13 +8,13 @@ export default class Nav extends Component {
 		document.getElementById('navMenu').classList.toggle('is-active');
 		//toggle hamburger menu
 	}
-	handleSuccess = res => {
+	handleSuccess(res) {
 		this.props.handleSuccess(res);
 	}
-	logout = () => {
+	logout() {
 		this.props.logout();
 	}
-	handleFail = err => {
+	handleFail(err) {
 		this.props.handleFail(err);
 	}
 	render() {
