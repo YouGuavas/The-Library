@@ -73,10 +73,10 @@ export default class Books extends Component {
 		return(
 			<div className='books'>
 				<div className='level level-books' id='title-level'>
-					<div className='level-item has-text-centered'>
+					<div className='level-item level-left has-text-centered'>
 						Title
 					</div>
-					<div className='level-item has-text-centered author'>
+					<div className='level-item level-right has-text-centered author'>
 						Author
 					</div>
 				</div>
@@ -112,11 +112,11 @@ class Item extends Component {
 	render() {
 		return(
 			<Link to={`/book/${this.props.url}`}>
-				<div className='level level-books'>
-					<div className='level-item has-text-centered'>
+				<div className='level level-books columns'>
+					<div className='column is-6 level-item level-left has-text-centered'>
 						{this.props.title}
 					</div>
-					<div className='level-item has-text-centered author'> 
+					<div className='column is-6 level-item level-right has-text-centered author'> 
 						{this.props.author}
 					</div>
 				</div>
