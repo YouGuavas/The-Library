@@ -82,11 +82,12 @@ export default class Books extends Component {
 						</div>
 					</div>
 				</div>
-
-				{books.map((book, index) => ( 
-						<Item title={book.title} author={book.author || 'unknown'} url={book._id} key={index} />
-				))
-			}
+				<div className='level level-books columns'>
+					{books.map((book, index) => ( 
+							<Item title={book.title} author={book.author || 'unknown'} url={book._id} key={index} />
+					))
+				}
+				</div>
 			<Paginator decrementPage={this.decrementPage} incrementPage={this.incrementPage} links={links}/>
 			</div>
 			)
@@ -115,7 +116,6 @@ class Item extends Component {
 	render() {
 		return(
 			<Link to={`/book/${this.props.url}`}>
-				<div className='level level-books columns'>
 					<div className='level-item'>
 						<div className='column is-6 has-text-centered'>
 							{this.props.title}
@@ -124,7 +124,6 @@ class Item extends Component {
 							{this.props.author}
 						</div>
 					</div>
-				</div>
 			</Link>
 			)
 	}
