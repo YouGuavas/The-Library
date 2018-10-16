@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv').config();
 const routes = require('./routes/basic');
 const path = require('path');
-const port = process.env.port || 3333;
+const port = process.env.PORT || 3333;
 const environment = process.env.NODE_ENV || 'dev';
 
 const corsOption = {
