@@ -7,7 +7,7 @@ export default class Book extends Component {
 		super();
 		this.state = {};
 	}
-	getBook = (bookID) => {
+	getBook(bookID) {
 		getBookData(bookID).then(res => {
 			const title = res.data.title;
 			const author = res.data.author;
@@ -23,7 +23,7 @@ export default class Book extends Component {
 
 		})
 	}
-	handleDelete = () => {
+	handleDelete() {
 		deleteBook(this.state.bID);
 		window.location.replace(window.location.origin);
 	}

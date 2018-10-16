@@ -14,9 +14,16 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				test: /\.jsx?$/,
 				exclude: ['node_modules'],
-				use: [{ loader: 'babel-loader' }],
+				use: [
+				{ 
+					loader: 'babel-loader',
+						query: {
+							presets: ['react', 'babel-preset-stage-2'] 
+						}
+					}
+				]
 			},
 			{
 				test: /\.s(a|c)ss$/,
