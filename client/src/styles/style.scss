@@ -62,9 +62,10 @@ body {
 		color: black;
 	}
 	.level-item {
-		width: 50% !important;
-		&:first-child {
-			border-right: 1px solid black;
+		.column {
+			&:first-child {
+				border-right: 1px solid black;
+			}
 		}
 	}
 }

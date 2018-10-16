@@ -116,11 +116,13 @@ class Item extends Component {
 		return(
 			<Link to={`/book/${this.props.url}`}>
 				<div className='level level-books columns'>
-					<div className='column is-6 level-item has-text-centered'>
-						{this.props.title}
-					</div>
-					<div className='column is-6 level-item has-text-centered author'> 
-						{this.props.author}
+					<div className='level-item'>
+						<div className='column is-6 has-text-centered'>
+							{this.props.title}
+						</div>
+						<div className='column is-6 has-text-centered author'> 
+							{this.props.author}
+						</div>
 					</div>
 				</div>
 			</Link>
