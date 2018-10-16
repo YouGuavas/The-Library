@@ -3,6 +3,13 @@
 		display: none;
 	}
 }
+@media (max-width: 1024px) {
+	.navbar-menu {
+		.navbar-item {
+			color: black;
+		}
+	}
+}
 #twitterUser {
 	color: #f5f5f5;
 	align-items:center;
