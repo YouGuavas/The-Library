@@ -70,11 +70,11 @@ body {
 	}
 }
 .level-books {
+	a {
+			width: 100%;
+	}
 	.level-item {
 		width: 50% !important;
-		a {
-			width: 100%;
-		}
 	}
 	&:not(:last-child) {
 		border-bottom: 1px solid lightgrey;
