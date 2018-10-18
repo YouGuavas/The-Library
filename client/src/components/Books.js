@@ -82,7 +82,7 @@ export default class Books extends Component {
 						</div>
 					</div>
 				</div>
-				<div className='level level-books columns'>
+				<div className='level level-books'>
 					{books.map((book, index) => ( 
 							<Item title={book.title} author={book.author || 'unknown'} url={book._id} key={index} />
 					))
