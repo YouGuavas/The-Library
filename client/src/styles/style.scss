@@ -72,6 +72,9 @@ body {
 .level-books {
 	.level-item {
 		width: 50% !important;
+		a {
+			width: 100%;
+		}
 	}
 	&:not(:last-child) {
 		border-bottom: 1px solid lightgrey;
