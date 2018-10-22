@@ -4,8 +4,9 @@
   "description": "React boilerplate",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
-    "test": "jest ./test" 
+    "build": "webpack --env.API_URL=http://gentle-escarpment-47289.herokuapp.com --config webpack.prod.js",
+    "test": "jest ./test",
+    "start": "webpack-dev-server --env.API_URL=http://localhost:3333 --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,8 @@
   "homepage": "https://github.com/YouGuavas/my-react-boilerplate#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "dotenv": "^6.1.0",
+    "fs": "0.0.1-security",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-router-dom": "^4.2.2",

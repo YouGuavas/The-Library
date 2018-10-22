@@ -2,6 +2,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
+
+
+
+
 module.exports = {
 	entry: {
 		main: './src/index.js',
@@ -37,10 +41,13 @@ module.exports = {
 			}
 		]
 	},
+	node: {
+		fs: "empty"
+	},
 	plugins: [
 		new HtmlWebPackPlugin({
 			template: 'index.html'
 		}),
 		new CleanWebpackPlugin(['dist'])
-	]
+\	]
 }
