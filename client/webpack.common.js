@@ -46,5 +46,5 @@ module.exports = {
 			template: 'index.html'
 		}),
 		new CleanWebpackPlugin(['dist'])
-\	]
+	]
 }
