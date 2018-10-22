@@ -4,9 +4,9 @@
   "description": "React boilerplate",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --env.API_URL=http://gentle-escarpment-47289.herokuapp.com --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
     "test": "jest ./test",
-    "start": "webpack-dev-server --env.API_URL=http://localhost:3333 --config webpack.dev.js"
+    "start": "webpack-dev-server --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
