@@ -4,8 +4,6 @@ const path = require('path');
 
 
 
-
-
 module.exports = {
 	entry: {
 		main: './src/index.js',
@@ -46,5 +44,5 @@ module.exports = {
 			template: 'index.html'
 		}),
 		new CleanWebpackPlugin(['dist'])
-	]
+		]
 }
