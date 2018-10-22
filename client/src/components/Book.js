@@ -40,8 +40,8 @@ export default class Book extends Component {
 				{author ? <h2 className='title'>Written by: {author}</h2> : null}
 				{published ? <h3 className='title hideWhenSmall'>Published on: {published}</h3> : null}
 				{finished ? <h3 className='title hideWhenSmall'>Finished reading on: {finished}</h3> : null}
-				{synopsis ? synopsis.split('\n').map(item => <p>{item}<br/></p> ): null}
-				{notes ? notes.indexOf('\n') !== -1 ? notes.split('\n').map(item => { <p>{item}</p> }) : <p>{notes}</p> : null}
+				{synopsis ? synopsis.split('\n').map((item,index) => <p key={index}>{item}<br/></p> ): null}
+				{notes ? notes.indexOf('\n') !== -1 ? notes.split('\n').map((item, index) => { <p key={index}>{item}</p> }) : <p>{notes}</p> : null}
 				{isAuthed ? <button className='button is-danger' onClick={this.handleDelete}>Delete</button> : null }
 				{title ? <Comments comments={this.state.comments || ['']}/> : null}
 			</div>

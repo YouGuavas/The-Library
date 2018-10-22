@@ -8,9 +8,12 @@ export default class Comments extends Component {
 		return(
 			<div className='comments books'>
 				<h3 className='title'>Comments</h3>
-				{comments.map((item, index) => (
-						<Comment item={item}/>
+				{
+					comments.length > 0 ? (
+						comments.map((item, index) => (
+							item.comment ? <Comment item={item} key={index} /> : null
 					))
+						) : null
 			}
 			{user.id ? <NewComment user={user}/> : null}
 				</div>
