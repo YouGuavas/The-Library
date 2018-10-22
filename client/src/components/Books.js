@@ -72,22 +72,20 @@ export default class Books extends Component {
 		}
 		return(
 			<div className='books'>
-				<div className='level level-books' id='title-level'>
+				<div className='level' id='title-level'>
 					<div className='level-item'>
-						<div className='column is-6 has-text-centered'>
+						<div className='has-text-centered column'>
 							Title
 						</div>
-						<div className='column is-6 has-text-centered author'>
+						<div className='has-text-centered hideWhenSmall column'>
 							Author
 						</div>
 					</div>
 				</div>
-				<div className='level level-books'>
-					{books.map((book, index) => ( 
-							<Item title={book.title} author={book.author || 'unknown'} url={book._id} key={index} />
-					))
-				}
-				</div>
+				{books.map((book, index) => (
+					<Item title={book.title} author={book.author || 'unknown'} url={book._id} key={index}/>
+				))
+			}
 			<Paginator decrementPage={this.decrementPage} incrementPage={this.incrementPage} links={links}/>
 			</div>
 			)
@@ -115,16 +113,16 @@ class Paginator extends Component {
 class Item extends Component {
 	render() {
 		return(
-			<Link to={`/book/${this.props.url}`}>
-					<div className='level-item'>
-						<div className='column is-6 has-text-centered'>
+			<div className='level-books level'>
+				<Link to={`/book/${this.props.url}`} className='level-item'>
+						<div className='has-text-centered column'>
 							{this.props.title}
 						</div>
-						<div className='column is-6 has-text-centered author'> 
+						<div className='has-text-centered hideWhenSmall column'> 
 							{this.props.author}
 						</div>
-					</div>
-			</Link>
+				</Link>
+			</div>
 			)
 	}
 }

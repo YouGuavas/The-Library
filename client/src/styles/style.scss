@@ -57,6 +57,7 @@ body {
 #title-level {
 	border-bottom: 1px solid black;
 	color: black;
+	margin-bottom: 0;
 	&:hover {
 		background-color: white;
 		color: black;
@@ -64,17 +65,20 @@ body {
 	.level-item {
 		.column {
 			&:first-child {
-				border-right: 1px solid black;
+				@media (min-width: 700px) {	
+					border-right: 1px solid black;
+				}
 			}
 		}
 	}
 }
 .level-books {
 	a {
-			width: 100%;
+		width: 100%;
+		color:black !important;
 	}
 	.level-item {
-		width: 50% !important;
+		color:black;
 	}
 	&:not(:last-child) {
 		border-bottom: 1px solid lightgrey;
@@ -97,6 +101,9 @@ a div div {
 		color: black;
 	}
 }
+textarea {
+	resize: none;
+}
 .media {
 	padding: 5px;
 }
@@ -114,4 +121,8 @@ a div div {
 	svg {
 		color: white !important;
 	}
+}
+
+.pagination-list {
+	padding: 5px;
 }
