@@ -6,7 +6,7 @@ const dotenv = require('dotenv').config();
 const routes = require('./routes/basic');
 const path = require('path');
 const port = process.env.PORT || 3333;
-const environment = process.env.NODE_ENV || 'dev';
+const environment = process.env.NODE_ENV || 'ls';
 
 let filePath;
 

@@ -36,14 +36,14 @@ export default class Book extends Component {
 		const {title, author, published, finished, synopsis, notes, isAuthed} = this.state;
 		return(
 			<div>
-				{title ? <h1 className='title'>{title}</h1> : null}
-				{author ? <h2 className='title'>Written by: {author}</h2> : null}
-				{published ? <h3 className='title hideWhenSmall'>Published on: {published}</h3> : null}
-				{finished ? <h3 className='title hideWhenSmall'>Finished reading on: {finished}</h3> : null}
-				{synopsis ? synopsis.split('\n').map((item,index) => <p key={index}>{item}<br/></p> ): null}
-				{notes ? notes.indexOf('\n') !== -1 ? notes.split('\n').map((item, index) => { <p key={index}>{item}</p> }) : <p>{notes}</p> : null}
-				{isAuthed ? <button className='button is-danger' onClick={this.handleDelete}>Delete</button> : null }
-				{title ? <Comments comments={this.state.comments || ['']}/> : null}
+				{title ? <h1 className='title'>{title}</h1> : null /* display title if it exists */}
+				{author ? <h2 className='title'>Written by: {author}</h2> : null /* display author if it exists */}
+				{published ? <h3 className='title hideWhenSmall'>Published on: {published}</h3> : null /* display Published date if it exists */ }
+				{finished ? <h3 className='title hideWhenSmall'>Finished reading on: {finished}</h3> : null /* display the date finished reading if it exists */ }
+				{synopsis ? synopsis.split('\n').map((item,index) => <p key={index}>{item}<br/></p> ): null /* display synopsis if it exists */}
+				{notes ? notes.indexOf('\n') !== -1 ? notes.split('\n').map((item, index) => { <p key={index}>{item}</p> }) : <p>{notes}</p> : null  /* display notes if they exist */ }
+				{isAuthed ? <button className='button is-danger' onClick={this.handleDelete}>Delete</button> : null /* only allow authed users to delete */ }
+				{title ? <Comments comments={this.state.comments || ['']}/> : null /* display comments if book exists */ }
 			</div>
 			)
 	}

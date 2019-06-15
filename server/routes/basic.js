@@ -89,7 +89,7 @@ router.post('/newcomment/:BOOK_ID', (req, res) => {
 		const query = {_id: ObjectId(req.params.BOOK_ID)};
 		collection.findOne(query, (err, data) => {
 			if (err) throw err;
-			let comments = res.json(data).comments || [];
+			let comments = data.comments || [];
 			comments.push(req.body.newComment);
 			collection.update(query, {$set: {comments: comments}}, (err, data) => {
 				if (err) throw err; 

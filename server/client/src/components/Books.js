@@ -9,7 +9,7 @@ export default class Books extends Component {
 		this.state = {
 			books: [],
 			page:0,
-			perPage: 10,
+			perPage: 3,
 			displayBooks: [] 
 		}
 	}
@@ -19,7 +19,7 @@ export default class Books extends Component {
 				books
 			}, () => {
 				this.setState({
-					displayBooks: this.state.books.slice(this.state.page*this.state.perPage, this.state.page*this.state.perPage+this.state.perPage),
+					displayBooks: this.state.books.slice(this.state.page * this.state.perPage, this.state.page * this.state.perPage + this.state.perPage),
 					numPages: Math.ceil(this.state.books.length/this.state.perPage)
 				})
 			});
