@@ -126,3 +126,6 @@ textarea {
 .pagination-list {
 	padding: 5px;
 }
+.pagination-link, .pagination-next, .pagination-previous {
+	cursor: pointer;
+}

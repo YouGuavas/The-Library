@@ -15,13 +15,13 @@ export default class Comments extends Component {
 	}
 	render() {
 		const comments = this.state.comments;
-		console.log(localStorage);
 		const user = JSON.parse(localStorage['authData']).user;
 		return(
 			<div className='comments books'>
 				<h3 className='title'>Comments</h3>
 				{
 					comments.length > 0 ? (
+						console.log(comments),
 						comments.map((item, index) => (
 							item.comment ? <Comment item={item} key={index} /> : null
 					))
@@ -61,7 +61,7 @@ class NewComment extends Component {
 			<article className='media'>
 				<figure className='media-left'>
 					<p className='image is-64x64'>
-						<img src={this.props.user.picture} className='commenterAvatar' />
+						<img src={this.props.user.picture} className='commenterAvatar' alt={`User ${this.props.user.username}'s avatar`}/>
 					</p>
 				</figure>
 				<div className='media-content'>
@@ -72,7 +72,7 @@ class NewComment extends Component {
 						<nav className="level">
 				      <div className="level-left">
 				        <div className="level-item">
-				          <a className="button is-info" onClick={this.handleSubmit}>Submit</a>
+				          <button className="button is-info" onClick={this.handleSubmit}>Submit</button>
 				        </div>
 				      </div>
 				     </nav>
@@ -90,7 +90,7 @@ class Comment extends Component {
 			<article className='media'>
 				<figure className='media-left'>
 					<p className='image is-64x64'>
-						<img src={user.picture}/>
+						<img src={user.picture} alt={`User ${user.username}'s avatar`}/>
 					</p>
 				</figure>
 				<div className='media-content'>
