@@ -10,7 +10,7 @@ const environment = process.env.NODE_ENV || 'ls';
 
 let filePath;
 
-environment === 'dev' ? filePath = 'src' : filePath = 'dist';
+environment === 'dev' || 'development' ? filePath = 'src' : filePath = 'dist';
 
 const corsOption = {
 	origin: true,
@@ -22,11 +22,11 @@ const corsOption = {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors(corsOption));
-app.use(express.static(path.join(__dirname, "client", filePath)))
+app.use(express.static(path.join(__dirname, "client2", filePath)))
 
 app.use('/api', routes);
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", /*"dist",*/ "index.html"));
+    res.sendFile(path.join(__dirname, "client2", 'public',/*"dist",*/ "index.html"));
 });
 app.listen(port, () => {
 	console.log(`Your app is now running on port: ${port}`);

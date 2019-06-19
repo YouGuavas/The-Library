@@ -122,7 +122,7 @@ router.post('/auth/twitter/reverse', (req, res) => {
 	}, (err, r, body) => {
 		if (err) return res.send(500, {message: err.message});
 		const jsonStr = `{"${body.replace(/&/g, '", "').replace(/=/g, '": "')}"}`;
-		res.send(JSON.parse(jsonStr));
+		res.send(JSON.parse(jsonStr))
 		
 	});
 });
