@@ -15,6 +15,7 @@ function deleteBook(bookID) {
 function newComment(bookID, comment) {
 	const url = `${BASE_URL}/api/newcomment/${bookID}`;
 	return axios.post(url, {newComment: comment}).then(res=>res);
+	//return getBookData(bookID);
 };
 
 function getBooksData() {

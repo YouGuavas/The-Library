@@ -2,8 +2,19 @@ import React, {Component} from 'react';
 import {newComment} from '../utils/api';
 
 export default class Comments extends Component {
+	constructor(props) {
+		super();
+		this.state = {
+			comments: props.comments
+		}
+	}
+	handleComment = comment => {
+		this.setState({
+			comments: this.state.comments + comment
+		});
+	}
 	render() {
-		const comments = this.props.comments;
+		const comments = this.state.comments;
 		const user = JSON.parse(localStorage['authData']).user;
 		return(
 			<div className='comments books'>
@@ -15,7 +26,7 @@ export default class Comments extends Component {
 					))
 						) : null
 			}
-			{user.id ? <NewComment user={user}/> : null}
+			{user.id ? <NewComment user={user} onComment={(comment) => {this.handleComment(comment)}}/> : null}
 				</div>
 			)
 	}
@@ -38,6 +49,7 @@ class NewComment extends Component {
 		const search = window.location.pathname.split('/')[2];
 		this.state.comment.length > 1 ? ( 
 			newComment(search, this.state),
+			this.props.onComment(this.state.comment),
 			this.setState({
 				comment: ''
 			})

@@ -35,7 +35,7 @@ export default class Book extends Component {
 	render() {
 		const {title, author, published, finished, synopsis, notes, isAuthed} = this.state;
 		return(
-			<div>
+			<div name={title}>
 				{title ? <h1 className='title'>{title}</h1> : null /* display title if it exists */}
 				{author ? <h2 className='title'>Written by: {author}</h2> : null /* display author if it exists */}
 				{published ? <h3 className='title hideWhenSmall'>Published on: {published}</h3> : null /* display Published date if it exists */ }

@@ -86,7 +86,7 @@ export default class Books extends Component {
 					<Item title={book.title} author={book.author || 'unknown'} url={book._id} key={index}/>
 				))
 			}
-			<Paginator decrementPage={this.decrementPage} incrementPage={this.incrementPage} links={links}/>
+			<Paginator tabindex='0' decrementPage={this.decrementPage} incrementPage={this.incrementPage} links={links}/>
 			</div>
 			)
 	}
