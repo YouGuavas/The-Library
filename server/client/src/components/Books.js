@@ -66,7 +66,7 @@ export default class Books extends Component {
 		for (let i = 0; i < numPages; i++) {
 			links.push(
 				<li key={i}>
-					<button className='pagination-link' onClick={() => this.setPage(i)}>{i+1}</button>
+					<button className='pagination-link' id={i} onClick={() => this.setPage(i)}>{i+1}</button>
 				</li>
 				)
 		}
@@ -85,13 +85,22 @@ export default class Books extends Component {
 				{books.map((book, index) => (
 					<Item title={book.title} author={book.author || 'unknown'} url={book._id} key={index}/>
 				))
-			}
+				}
 			<Paginator tabindex='0' decrementPage={this.decrementPage} incrementPage={this.incrementPage} links={links}/>
 			</div>
 			)
 	}
 }
 class Paginator extends Component {
+	constructor() {
+		super();
+		this.state = {
+			currentPage: 0
+		}
+	}
+	setCurrent = () => {
+		document.getElementById(this.state.currentPage).setAttribute('class', 'pagination-link is-current')
+	}
 	render() {
 		return (
 			<nav className='pagination is-centered'>
