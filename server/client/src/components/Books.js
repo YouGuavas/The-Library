@@ -35,7 +35,7 @@ export default class Books extends Component {
 			});
 	}
 	incrementPage = () => {
-		this.state.page < this.state.numPages-1 ? (
+		if (this.state.page < this.state.numPages - 1) (
 		this.setState({
 			page: this.state.page+1
 		}, () => {
@@ -43,10 +43,10 @@ export default class Books extends Component {
 					displayBooks: this.state.books.slice(this.state.page*this.state.perPage, this.state.page*this.state.perPage+this.state.perPage)
 				})
 			})
-		) : null;
+		);
 	}
 	decrementPage = () => {
-		this.state.page > 0 ? (
+		if (this.state.page > 0) (
 		this.setState({
 			page: this.state.page-1
 		}, () => {
@@ -54,7 +54,7 @@ export default class Books extends Component {
 					displayBooks: this.state.books.slice(this.state.page*this.state.perPage, this.state.page*this.state.perPage+this.state.perPage)
 				})
 			}) 
-		) : null;
+		);
 	}
 	componentDidMount() {
 		this.getBooks();
@@ -65,8 +65,8 @@ export default class Books extends Component {
 		let links = [];
 		for (let i = 0; i < numPages; i++) {
 			links.push(
-				<li>
-					<a className='pagination-link' onClick={() => this.setPage(i)}>{i+1}</a>
+				<li key={i}>
+					<button className='pagination-link' onClick={() => this.setPage(i)}>{i+1}</button>
 				</li>
 				)
 		}
@@ -95,8 +95,8 @@ class Paginator extends Component {
 	render() {
 		return (
 			<nav className='pagination is-centered'>
-				<a className='pagination-previous' onClick={this.props.decrementPage}>Previous</a>
-				<a className='pagination-next' onClick={this.props.incrementPage}>Next</a>
+				<button className='pagination-previous' onClick={this.props.decrementPage}>Previous</button>
+				<button className='pagination-next' onClick={this.props.incrementPage}>Next</button>
 				<ul className='pagination-list'>
 				{
 					this.props.links.map((item) => (

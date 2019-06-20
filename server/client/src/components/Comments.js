@@ -9,8 +9,10 @@ export default class Comments extends Component {
 		}
 	}
 	handleComment = comment => {
+		const comments = this.state.comments;
+		comments.push(comment);
 		this.setState({
-			comments: this.state.comments + comment
+			comments
 		});
 	}
 	render() {
@@ -20,11 +22,11 @@ export default class Comments extends Component {
 			<div className='comments books'>
 				<h3 className='title'>Comments</h3>
 				{
-					comments.length > 0 ? (
+					comments.length > 0 ? Array.isArray(comments) ? (
 						comments.map((item, index) => (
 							item.comment ? <Comment item={item} key={index} /> : null
 					))
-						) : null
+						) : console.log(comments) : console.log(comments)
 			}
 			{user.id ? <NewComment user={user} onComment={(comment) => {this.handleComment(comment)}}/> : null}
 				</div>
@@ -47,31 +49,31 @@ class NewComment extends Component {
 	}
 	handleSubmit = () => {
 		const search = window.location.pathname.split('/')[2];
-		this.state.comment.length > 1 ? ( 
-			newComment(search, this.state),
-			this.props.onComment(this.state.comment),
+		if (this.state.comment.length > 1) { 
+			newComment(search, this.state);
+			this.props.onComment(this.state);
 			this.setState({
 				comment: ''
 			})
-		) : alert('Please type out a comment.')
+	 } else alert('Please type out a comment.')
 	}
 	render() {
 		return (
 			<article className='media'>
 				<figure className='media-left'>
 					<p className='image is-64x64'>
-						<img src={this.props.user.picture} className='commenterAvatar' />
+						<img src={this.props.user.picture} className='commenterAvatar' alt={`User ${this.props.user.username}'s avatar`}/>
 					</p>
 				</figure>
 				<div className='media-content'>
 					<div className='field'>
 						<div className='control'>
-							<textarea className='input' type='textarea' onChange={this.handleChange}/>
+							<textarea className='input' type='textarea' onChange={this.handleChange} value={this.state.comment}/>
 						</div>
 						<nav className="level">
 				      <div className="level-left">
 				        <div className="level-item">
-				          <a className="button is-info" onClick={this.handleSubmit}>Submit</a>
+				          <button className="button is-info" onClick={this.handleSubmit}>Submit</button>
 				        </div>
 				      </div>
 				     </nav>
@@ -89,7 +91,7 @@ class Comment extends Component {
 			<article className='media'>
 				<figure className='media-left'>
 					<p className='image is-64x64'>
-						<img src={user.picture}/>
+						<img src={user.picture} alt={`User ${user.username}'s avatar`}/>
 					</p>
 				</figure>
 				<div className='media-content'>

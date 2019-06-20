@@ -1,5 +1,5 @@
 import axios from 'axios';
-const environment = 'prod';
+const environment = 'dev';
 
 let BASE_URL; 
 

@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import Nav from './Nav';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Content from './Content';
 import NewBook from './NewBook';
 import Book from './Book';
-import Comments from './Comments';
 
 
 export default class App extends Component {
@@ -41,7 +40,7 @@ export default class App extends Component {
 			})
 	}
 	componentDidMount() {
-		typeof localStorage['authData'] !== 'undefined' ? this.setState(JSON.parse(localStorage['authData'])) : null;
+		if (typeof localStorage['authData'] !== 'undefined') this.setState(JSON.parse(localStorage['authData']));
 	}
 	render() {
 		const {isAuthed} = this.state;
