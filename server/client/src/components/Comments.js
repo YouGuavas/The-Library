@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {newComment} from '../utils/api';
+import {newComment, deleteComment} from '../utils/api';
 
 export default class Comments extends Component {
 	constructor(props) {
@@ -85,8 +85,26 @@ class NewComment extends Component {
 }
 
 class Comment extends Component {
+	constructor() {
+		super();
+		this.state = {};
+	}
+	handleDelete = () => {
+		const search = window.location.pathname.split('/')[2];
+		//console.log(deleteComment(search, this.state));
+	}
+	componentDidMount() {
+		if (typeof localStorage['authData'] !== 'undefined') {
+			let isOwner;
+			JSON.parse(localStorage['authData']).user.id === this.props.item.user.id ? isOwner = true : isOwner = false 
+			this.setState(JSON.parse(localStorage['authData']), () => {
+				this.setState({isOwner});
+			});
+		}
+	}
 	render() {
 		const {comment, user} = this.props.item;
+		const isAuthed = this.state;
 		return(
 			<article className='media'>
 				<figure className='media-left'>
@@ -101,6 +119,7 @@ class Comment extends Component {
 							<br/>
 							{comment}
 						</p>
+						{this.state.isOwner ? <button className='button is-danger' onClick={this.handleDelete}>Delete</button> : null /* only allow authed users to delete */ }
 					</div>
 				</div>
 		

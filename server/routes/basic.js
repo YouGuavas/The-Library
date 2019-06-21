@@ -5,15 +5,10 @@ mongoose();
 const passport = require('passport');
 const passportConfig = require('../passport');
 passportConfig();
-const User = require('mongoose').model('User');
 const request = require('request');
 
 const jwt = require('jsonwebtoken');
-const expressJwt = require('express-jwt');
-
-
 const mongod = require('mongodb');
-const dotenv = require('dotenv').config();
 const ObjectId = mongod.ObjectId;
 const mongo = mongod.MongoClient;
 const mongoURI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
@@ -80,8 +75,7 @@ router.get('/book/:BOOK_ID', (req, res) => {
 		});
 	})
 });
-
-router.post('/newcomment/:BOOK_ID', (req, res) => {
+router.get('/deletecomment/:BOOK_ID', (req, res) => {
 	mongo.connect(mongoURI, (err, client) => {
 		if (err) throw err;
 		const db = client.db(process.env.DB_NAME);
@@ -90,7 +84,23 @@ router.post('/newcomment/:BOOK_ID', (req, res) => {
 		collection.findOne(query, (err, data) => {
 			if (err) throw err;
 			let comments = data.comments || [];
+
+		})
+	});
+});
+router.post('/newcomment/:BOOK_ID', (req, res) => {
+	//add new comment to book
+	mongo.connect(mongoURI, (err, client) => {
+		if (err) throw err;
+		const db = client.db(process.env.DB_NAME);
+		const collection = db.collection(process.env.COLLECTION);
+		const query = {_id: ObjectId(req.params.BOOK_ID)};
+		//find book to add comment to
+		collection.findOne(query, (err, data) => {
+			if (err) throw err;
+			let comments = data.comments || [];
 			comments.push(req.body.newComment);
+			//add new comment to array of comments
 			collection.update(query, {$set: {comments: comments}}, (err, data) => {
 				if (err) throw err; 
 				client.close();
@@ -106,7 +116,7 @@ router.post('/newbook', (req, res) => {
 		if (err) throw err;
 		const db = client.db(process.env.DB_NAME);
 		const collection = db.collection(process.env.COLLECTION);
-		collection.insert({title: req.body.title, author: req.body.author, published: req.body.published, finished: req.body.finished, synopsis: req.body.synopsis, notes: req.body.notes, comments: []});
+		collection.insert({title: req.body.title, author: req.body.author, published: req.body.published, finished: req.body.finished, synopsis: req.body.synopsis, notes: req.body.notes, comments: [], uid: req.body.uid});
 		client.close();
 	})
 });

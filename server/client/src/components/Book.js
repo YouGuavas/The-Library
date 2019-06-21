@@ -7,7 +7,7 @@ export default class Book extends Component {
 		super();
 		this.state = {};
 	}
-	getBook = (bookID) => {
+	getBook = (bookID, cb) => {
 		getBookData(bookID).then(res => {
 			const title = res.data.title;
 			const author = res.data.author;
@@ -17,9 +17,10 @@ export default class Book extends Component {
 			const notes = res.data.notes;
 			const bID = res.data._id;
 			const comments = res.data.comments;
+			const userId = res.data.uid;
 			this.setState({
-				title, author, published, finished, synopsis, notes, bID, comments
-			})
+				title, author, published, finished, synopsis, notes, bID, comments, userId
+			}, () => {cb()})
 
 		})
 	}
@@ -28,12 +29,18 @@ export default class Book extends Component {
 		window.location.replace(window.location.origin);
 	}
 	componentDidMount() {
-		if (typeof localStorage['authData'] !== 'undefined') this.setState(JSON.parse(localStorage['authData']));
-		const search = window.location.pathname.split('/')[2];
-		this.getBook(search);
+		if (typeof localStorage['authData'] !== 'undefined') this.setState(JSON.parse(localStorage['authData']), () => {
+			let isOwner;
+			const search = window.location.pathname.split('/')[2];
+			this.getBook(search, () => {
+				JSON.parse(localStorage['authData']).user.id === this.state.userId ? isOwner = true : isOwner = false
+				this.setState({isOwner}); 
+			});
+
+		});
 	}
 	render() {
-		const {title, author, published, finished, synopsis, notes, isAuthed} = this.state;
+		const {title, author, published, finished, synopsis, notes, isOwner} = this.state;
 		return(
 			<div name={title}>
 				{title ? <h1 className='title'>{title}</h1> : null /* display title if it exists */}
@@ -43,8 +50,8 @@ export default class Book extends Component {
 				{synopsis ? synopsis.split('\n').map((item,index) => <p key={index}>{item}<br/></p> ): null /* display synopsis if it exists */}
 				{notes ? notes.indexOf('\n') !== -1 ? notes.split('\n').map((item, index) => { return <p key={index}>{item}</p> }) : <p>{notes}</p> : null /* display notes if they exist */ }
 				
-				{isAuthed ? <button className='button is-danger' onClick={this.handleDelete}>Delete</button> : null /* only allow authed users to delete */ }
-				{title ? <Comments comments={this.state.comments || ['']}/> : null /* display comments if book exists */ }
+				{isOwner ? <button className='button is-danger' onClick={this.handleDelete}>Delete</button> : null /* only allow authed users to delete */ }
+				{title ? <Comments comments={this.state.comments || ['']} book={this.state.bID}/> : null /* display comments if book exists */ }
 			</div>
 			)
 	}

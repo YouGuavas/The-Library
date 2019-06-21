@@ -5,7 +5,7 @@ let BASE_URL;
 
 environment === 'dev' ? BASE_URL = 'http://localhost:3333' : BASE_URL = '';
 
-export {getBooksData, newBook, getBookData, deleteBook, newComment};
+export {getBooksData, newBook, getBookData, deleteBook, newComment, deleteComment};
 
 function deleteBook(bookID) {
 	const url = `${BASE_URL}/api/deletebook/${bookID}`;
@@ -16,6 +16,10 @@ function newComment(bookID, comment) {
 	const url = `${BASE_URL}/api/newcomment/${bookID}`;
 	return axios.post(url, {newComment: comment}).then(res=>res);
 	//return getBookData(bookID);
+};
+function deleteComment(bookID, comment) {
+	const url = `${BASE_URL}/api/deletecomment/${bookID}`;
+	return axios.post(url, {comment}).then(res=>res);
 };
 
 function getBooksData() {
@@ -30,5 +34,5 @@ function getBookData(bookID) {
 
 function newBook(data) {
 	const url = `${BASE_URL}/api/newbook`;
-	return axios.post(url, {title: data.title, author: data.author, published: data.published, finished: data.finished, synopsis: data.synopsis, notes: data.notes}).then(res=>res.data);
+	return axios.post(url, {uid: data.user.id, title: data.title, author: data.author, published: data.published, finished: data.finished, synopsis: data.synopsis, notes: data.notes}).then(res=>res.data);
 };

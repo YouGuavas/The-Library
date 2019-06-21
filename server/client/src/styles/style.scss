@@ -145,3 +145,9 @@ textarea {
 	height: 25px;
 	display: block;
 }
+.pagination.is-centered .pagination-next {
+	-webkit-box-ordinal-group: 4;
+	-ms-flex-order: 3;
+	order: 3;
+}
+

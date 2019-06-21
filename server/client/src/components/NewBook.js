@@ -25,11 +25,17 @@ export default class NewBook extends Component {
 		)
 	}
 	handleClick = () => {
+		if (this.state.isAuthed) {
 		newBook(this.state);
 		window.location.replace(window.location.origin);
+		} else alert("Please sign in before creating a new book.")
 	}
 	toggleHidden = (t) => {
 		document.getElementById(t).classList.toggle('hidden');
+	}
+	componentDidMount() {
+		this.setState(JSON.parse(localStorage['authData']));
+
 	}
 	render() {
 		return(
