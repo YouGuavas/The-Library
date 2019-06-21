@@ -111,12 +111,19 @@ router.post('/newcomment/:BOOK_ID', (req, res) => {
 });
 
 router.post('/newbook', (req, res) => {
+	const titleCase = (title) => {
+		return title.toLowerCase().split(' ').map((word, index) => {
+			const noCaps = ['a', 'for', 'of', 'the'];
+			if (index === 0 || noCaps.indexOf(word) === -1) return word.replace(word[0], word[0].toUpperCase());
+			else return word;
+		}).join(' ');
+	}
 	//add new book to library
 	mongo.connect(mongoURI, (err, client) => {
 		if (err) throw err;
 		const db = client.db(process.env.DB_NAME);
 		const collection = db.collection(process.env.COLLECTION);
-		collection.insert({title: req.body.title, author: req.body.author, published: req.body.published, finished: req.body.finished, synopsis: req.body.synopsis, notes: req.body.notes, comments: [], uid: req.body.uid});
+		collection.insert({title: titleCase(req.body.title), author: titleCase(req.body.author), published: req.body.published, finished: req.body.finished, synopsis: req.body.synopsis, notes: req.body.notes, comments: [], uid: req.body.uid});
 		client.close();
 	})
 });
