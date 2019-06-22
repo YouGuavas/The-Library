@@ -5,7 +5,8 @@ export default class Comments extends Component {
 	constructor(props) {
 		super();
 		this.state = {
-			comments: props.comments
+			comments: props.comments,
+			bookOwner: props.bookOwner
 		}
 	}
 	handleComment = comment => {
@@ -18,28 +19,30 @@ export default class Comments extends Component {
 	render() {
 		const comments = this.state.comments;
 		const user = JSON.parse(localStorage['authData']).user;
+		const isOwner = JSON.parse(localStorage['authData']).user === this.props.bookOwner;
 		return(
 			<div className='comments books'>
 				<h3 className='title'>Comments</h3>
 				{
 					comments.length > 0 ? Array.isArray(comments) ? (
 						comments.map((item, index) => (
-							item.comment ? <Comment item={item} key={index} /> : null
+							item.comment ? <Comment item={item} key={index} index={index} /> : null
 					))
 						) : console.log(comments) : console.log(comments)
 			}
-			{user.id ? <NewComment user={user} onComment={(comment) => {this.handleComment(comment)}}/> : null}
+			{user.id ? <NewComment isBookOwner={isOwner} user={user} onComment={(comment) => {this.handleComment(comment)}}/> : null}
 				</div>
 			)
 	}
 }
 
 class NewComment extends Component {
-	constructor() {
+	constructor(props) {
 		super();
 		this.state = {
 			user:  JSON.parse(localStorage['authData']).user,
-			comment:''
+			comment:'',
+			bookOwner: props.isBookOwner
 		};
 	}
 	handleChange = e => {
@@ -85,9 +88,11 @@ class NewComment extends Component {
 }
 
 class Comment extends Component {
-	constructor() {
+	constructor(props) {
 		super();
-		this.state = {};
+		this.state = {
+			order: props.index
+		};
 	}
 	handleDelete = () => {
 		const search = window.location.pathname.split('/')[2];
@@ -104,7 +109,7 @@ class Comment extends Component {
 	}
 	render() {
 		const {comment, user} = this.props.item;
-		const isAuthed = this.state;
+		const isOwner = this.state;
 		return(
 			<article className='media'>
 				<figure className='media-left'>
@@ -115,11 +120,11 @@ class Comment extends Component {
 				<div className='media-content'>
 					<div className='content comment-content'>
 						<p>
-							<strong>@{user.username}</strong>
+							<strong>@<a href={`https://twitter.com/${user.username}`}>{user.username}</a></strong>
 							<br/>
 							{comment}
 						</p>
-						{this.state.isOwner ? <button className='button is-danger' onClick={this.handleDelete}>Delete</button> : null /* only allow authed users to delete */ }
+						{isOwner ? <button className='button is-danger' onClick={this.handleDelete}>Delete</button> : null /* only allow authed users to delete */ }
 					</div>
 				</div>
 		

@@ -51,7 +51,7 @@ export default class Book extends Component {
 				{notes ? notes.indexOf('\n') !== -1 ? notes.split('\n').map((item, index) => { return <p key={index}>{item}</p> }) : <p>{notes}</p> : null /* display notes if they exist */ }
 				
 				{isOwner ? <button className='button is-danger' onClick={this.handleDelete}>Delete</button> : null /* only allow authed users to delete */ }
-				{title ? <Comments comments={this.state.comments || ['']} book={this.state.bID}/> : null /* display comments if book exists */ }
+				{title ? <Comments comments={this.state.comments || ['']} book={this.state.bID} bookOwner={this.state.userId}/> : null /* display comments if book exists */ }
 			</div>
 			)
 	}

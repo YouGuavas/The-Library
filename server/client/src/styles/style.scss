@@ -104,9 +104,7 @@ body {
 	}
 }
 	
-.comment-content	{
-		color: black;
-}
+
 a div div {
 	color: #7a7a7a;
 	&:hover {
@@ -149,5 +147,14 @@ textarea {
 	-webkit-box-ordinal-group: 4;
 	-ms-flex-order: 3;
 	order: 3;
+}
+.comment-content	{
+	color: black;
+	a {
+		text-decoration: underline;
+	}
+	a:hover {
+		text-decoration: none;
+	}
 }
 
