@@ -75,7 +75,7 @@ router.get('/book/:BOOK_ID', (req, res) => {
 		});
 	})
 });
-router.get('/deletecomment/:BOOK_ID', (req, res) => {
+router.get('/deletecomment/:BOOK_ID/:ORDER', (req, res) => {
 	mongo.connect(mongoURI, (err, client) => {
 		if (err) throw err;
 		const db = client.db(process.env.DB_NAME);
@@ -84,7 +84,13 @@ router.get('/deletecomment/:BOOK_ID', (req, res) => {
 		collection.findOne(query, (err, data) => {
 			if (err) throw err;
 			let comments = data.comments || [];
-
+			const order = parseInt(req.params.ORDER);
+			comments = comments.slice(0, order).concat(comments.slice(order+1, comments.length)) 
+			collection.update(query, {$set: {comments: comments}}, (err) => {
+				if (err) throw err;
+				client.close();
+				res.end();
+			})
 		})
 	});
 });
@@ -99,7 +105,7 @@ router.post('/newcomment/:BOOK_ID', (req, res) => {
 		collection.findOne(query, (err, data) => {
 			if (err) throw err;
 			let comments = data.comments || [];
-			comments.push(req.body.newComment);
+			Array.isArray(comments) ? comments.push(req.body.newComment) : null;
 			//add new comment to array of comments
 			collection.update(query, {$set: {comments: comments}}, (err, data) => {
 				if (err) throw err; 

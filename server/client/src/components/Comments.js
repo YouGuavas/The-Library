@@ -10,8 +10,15 @@ export default class Comments extends Component {
 		}
 	}
 	handleComment = comment => {
-		const comments = this.state.comments;
+		const comments = this.state.comments || [];
 		comments.push(comment);
+		this.setState({
+			comments
+		});
+	}
+	handleDelete = order => {
+		let comments = this.state.comments || [];
+		comments = comments.slice(0, order).concat(comments.slice(order+1, comments.length));
 		this.setState({
 			comments
 		});
@@ -26,7 +33,7 @@ export default class Comments extends Component {
 				{
 					comments.length > 0 ? Array.isArray(comments) ? (
 						comments.map((item, index) => (
-							item.comment ? <Comment item={item} key={index} index={index} /> : null
+							item.comment ? <Comment item={item} key={index} index={index} onDelete={comment => {this.handleDelete(comment)}} /> : null
 					))
 						) : console.log(comments) : console.log(comments)
 			}
@@ -96,7 +103,8 @@ class Comment extends Component {
 	}
 	handleDelete = () => {
 		const search = window.location.pathname.split('/')[2];
-		//console.log(deleteComment(search, this.state));
+		this.props.onDelete(this.state.order);
+		deleteComment(search, this.state.order);
 	}
 	componentDidMount() {
 		if (typeof localStorage['authData'] !== 'undefined') {

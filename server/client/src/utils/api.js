@@ -17,9 +17,9 @@ function newComment(bookID, comment) {
 	return axios.post(url, {newComment: comment}).then(res=>res);
 	//return getBookData(bookID);
 };
-function deleteComment(bookID, comment) {
-	const url = `${BASE_URL}/api/deletecomment/${bookID}`;
-	return axios.post(url, {comment}).then(res=>res);
+function deleteComment(bookID, order) {
+	const url = `${BASE_URL}/api/deletecomment/${bookID}/${order}`;
+	return axios.get(url, {order}).then(res=>res);
 };
 
 function getBooksData() {
