@@ -15,15 +15,15 @@ export default class Nav extends Component {
 		//toggle hamburger menu
 	}
 	handleClickItem = (cName) => {
-		cName === 'main' ? (
+		if (cName === 'main') {
 			document.getElementById('navMenu').classList.contains('is-active') ? (
 				document.getElementById('burger').classList.toggle('is-active'),
 				document.getElementById('navMenu').classList.toggle('is-active')
-			) : undefined
-		) : (
-		document.getElementById('burger').classList.toggle('is-active'),
-		document.getElementById('navMenu').classList.toggle('is-active')
-		)
+			 ) : undefined
+		} else {
+			document.getElementById('burger').classList.toggle('is-active');
+			document.getElementById('navMenu').classList.toggle('is-active');
+		}
 	}
 	handleSuccess = (res) => {
 		this.props.handleSuccess(res);
