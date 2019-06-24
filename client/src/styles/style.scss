@@ -1,9 +1,9 @@
-@media (max-width: 700px) {
+@media (max-width: 701px) {
 	.hideWhenSmall {
-		display: none;
+		display: none!important;
 	}
 	.commenterAvatar, .twitterAvi {
-		display: none;
+		display: none!important;
 	}
 }
 @media (max-width: 1024px) {
