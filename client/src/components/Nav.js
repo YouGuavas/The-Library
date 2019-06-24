@@ -16,10 +16,10 @@ export default class Nav extends Component {
 	}
 	handleClickItem = (cName) => {
 		if (cName === 'main') {
-			document.getElementById('navMenu').classList.contains('is-active') ? (
-				document.getElementById('burger').classList.toggle('is-active'),
-				document.getElementById('navMenu').classList.toggle('is-active')
-			 ) : undefined
+			if (document.getElementById('navMenu').classList.contains('is-active')) {
+				document.getElementById('burger').classList.toggle('is-active');
+				document.getElementById('navMenu').classList.toggle('is-active');
+			}
 		} else {
 			document.getElementById('burger').classList.toggle('is-active');
 			document.getElementById('navMenu').classList.toggle('is-active');
