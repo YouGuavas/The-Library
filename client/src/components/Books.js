@@ -85,9 +85,9 @@ export default class Books extends Component {
 						</div>
 					</div>
 				</div>
-				{books.map((book, index) => (
+				{Array.isArray(books) ? books.map((book, index) => (
 					<Item title={book.title} author={book.author} url={book._id} key={index}/>
-				))
+				)) : null
 				}
 			<Paginator tabindex='0' setPage={(pP, nP) => {this.setPage(pP, nP)}} decrementPage={this.decrementPage} incrementPage={this.incrementPage} numPages={this.state.numPages}/>
 			</div>
