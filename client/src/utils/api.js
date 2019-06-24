@@ -5,7 +5,6 @@ const environment = process.env.NODE_ENV;
 let BASE_URL; 
 
 environment === 'development' ? BASE_URL = '' : BASE_URL = '';
-console.log(BASE_URL);
 export {getBooksData, newBook, getBookData, deleteBook, newComment, deleteComment};
 
 function deleteBook(bookID) {
