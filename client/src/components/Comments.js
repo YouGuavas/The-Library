@@ -122,7 +122,7 @@ class Comment extends Component {
 			<article className='media'>
 				<figure className='media-left'>
 					<p className='image is-64x64'>
-						<img src={user.picture} alt={`User ${user.username}'s avatar`}/>
+						<img src={user.picture} className='commenterAvatar' alt={`User ${user.username}'s avatar`}/>
 					</p>
 				</figure>
 				<div className='media-content'>
