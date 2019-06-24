@@ -10,7 +10,7 @@ const environment = process.env.NODE_ENV;
 
 let filePath;
 
-environment === 'dev' || 'development' ? filePath = 'src' : filePath = 'build';
+environment === 'dev' || 'development' ? filePath = 'build' : filePath = 'build';
 
 const corsOption = {
 	origin: true,
