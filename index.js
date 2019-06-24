@@ -7,7 +7,6 @@ const routes = require('./routes/basic');
 const path = require('path');
 const port = process.env.PORT || 3333;
 const environment = process.env.NODE_ENV;
-console.log(port, environment);
 
 let filePath;
 
