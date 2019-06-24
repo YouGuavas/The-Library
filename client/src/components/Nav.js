@@ -32,7 +32,7 @@ export default class Nav extends Component {
 			<div className='hero-head'>
 				<nav className='navbar is-dark'>
 					<div className='navbar-brand'>
-						<Link to='/' onClick={document.getElementById('navMenu').classList.contains('is-active') ? this.handleClickItem : null} className='navbar-item navbar-main'>The Library</Link>
+						<Link to='/' onClick={document.getElementById('burger').classList.contains('is-active') ? undefined : this.handleClickItem} className='navbar-item navbar-main'>The Library</Link>
 						<span id='burger' className="navbar-burger burger" onClick={this.handleClick}>
 		          <span></span>
 		          <span></span>
