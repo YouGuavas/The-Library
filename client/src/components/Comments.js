@@ -72,7 +72,7 @@ class NewComment extends Component {
 			<article className='media'>
 				<figure className='media-left'>
 					<p className='image is-64x64'>
-						<img src={this.props.user.picture} className='hideWhenSmall' alt={`User ${this.props.user.username}'s avatar`}/>
+						<img src={this.props.user.picture} alt={`User ${this.props.user.username}'s avatar`}/>
 					</p>
 				</figure>
 				<div className='media-content'>

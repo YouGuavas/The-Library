@@ -41,13 +41,13 @@ export default class NewBook extends Component {
 		return(
 				<div>
 					<div className='field'>
-						<label className='title'>Title</label>
+						<label className='title'>Title *</label>
 						<div className='control'>
 							<input onChange={this.handleChange} id='title' className='input' type='text'/>
 						</div>
 					</div>
 					<div className='field'>
-						<label className='title' onClick={() => this.toggleHidden('author')}>Author</label>
+						<label className='title' onClick={() => this.toggleHidden('author')}>Author *</label>
 						<div className='control'>
 							<input onChange={this.handleChange} id='author' className='input' type='text'/>
 						</div>
