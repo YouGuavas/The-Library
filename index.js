@@ -7,6 +7,7 @@ const routes = require('./routes/basic');
 const path = require('path');
 const port = process.env.PORT || 3333;
 const environment = process.env.NODE_ENV;
+console.log(port, environment);
 
 let filePath;
 
@@ -26,7 +27,7 @@ app.use(express.static(path.join(__dirname, "client", filePath)))
 
 app.use('/api', routes);
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", 'public', "index.html"));
+    res.sendFile(path.join(__dirname, "client", 'build', "index.html"));
 });
 app.listen(port, () => {
 	console.log(`Your app is now running on port: ${port}`);
