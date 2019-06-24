@@ -16,9 +16,9 @@ export default class Nav extends Component {
 	}
 	handleClickItem = (cName) => {
 		if (cName === 'main') {
-			if (document.getElementById('navMenu').classList.contains('is-active')) {
-				document.getElementById('burger').classList.toggle('is-active');
-				document.getElementById('navMenu').classList.toggle('is-active');
+			if (document.getElementById('navMenu')) {
+					document.getElementById('burger').classList.toggle('is-active');
+					document.getElementById('navMenu').classList.toggle('is-active');
 			}
 		} else {
 			document.getElementById('burger').classList.toggle('is-active');
