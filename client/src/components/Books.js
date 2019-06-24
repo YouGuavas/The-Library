@@ -14,17 +14,18 @@ export default class Books extends Component {
 		}
 	}
 	getBooks = () => {
-		getBooksData().then(books => {
+		getBooksData().then(
+			books => {
+			console.log(books);
 			this.setState({
 				books
 			}, () => {
-				console.log(this.state.books);
 				this.setState({
 					displayBooks: this.state.books.slice(this.state.page * this.state.perPage, this.state.page * this.state.perPage + this.state.perPage),
 					numPages: Math.ceil(this.state.books.length/this.state.perPage)
-				}, () => {console.log(this.state.numPages)})
+				})
 			});
-		});
+			});
 	}
 	incrementPage = () => {
 		if (this.state.page < this.state.numPages - 1) {
@@ -50,7 +51,6 @@ export default class Books extends Component {
 		}, () => {
 			if (this.state.displayBooks.length < this.state.perPage) {
 				let books = this.state.displayBooks;
-				console.log(this.state.displayBooks.length);
 				for (let i = this.state.displayBooks.length; i < this.state.perPage; i++) {
 					books.push({'title': '', 'author': '', '_id': ''})
 				};
@@ -87,7 +87,6 @@ export default class Books extends Component {
 					</div>
 				</div>
 				{Array.isArray(books) ? (
-					console.log(books),
 					books.map((book, index) => (
 					<Item title={book.title} author={book.author} url={book._id} key={index}/>
 				))) : null

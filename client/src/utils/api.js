@@ -1,10 +1,11 @@
 import axios from 'axios';
-const environment = '';
+const dotenv = require('dotenv').config();
 
+const environment = process.env.NODE_ENV;
 let BASE_URL; 
 
-environment === 'dev' ? BASE_URL = 'http://localhost:3333' : BASE_URL = 'https://the-library-of-guavas.herokuapp.com/';
-
+environment === 'development' ? BASE_URL = 'http://localhost:3333' : BASE_URL = '';
+console.log(BASE_URL);
 export {getBooksData, newBook, getBookData, deleteBook, newComment, deleteComment};
 
 function deleteBook(bookID) {
