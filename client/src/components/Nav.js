@@ -16,7 +16,7 @@ export default class Nav extends Component {
 	}
 	handleClickItem = (cName) => {
 		if (cName === 'main') {
-			if (document.getElementById('navMenu')) {
+			if (document.getElementById('navMenu').classList.contains('is-active')) {
 					document.getElementById('burger').classList.toggle('is-active');
 					document.getElementById('navMenu').classList.toggle('is-active');
 			}
@@ -39,7 +39,7 @@ export default class Nav extends Component {
 			<div className='hero-head'>
 				<nav className='navbar is-dark'>
 					<div className='navbar-brand'>
-						<Link to='/' onClick={this.handleClickItem('main')} className='navbar-item'>The Library</Link>
+						<Link to='/' onClick={() => {this.handleClickItem('main')}} className='navbar-item'>The Library</Link>
 						<span id='burger' className="navbar-burger burger" onClick={this.handleClick}>
 		          <span></span>
 		          <span></span>
@@ -49,8 +49,8 @@ export default class Nav extends Component {
 					<div id='navMenu' className='navbar-menu'>
 						<div className='navbar-end'>
 							{this.props.isAuthed === true ? <a href={`https://twitter.com/${this.props.user.username}`} target='_blank' rel='noopener noreferrer' id='twitterUser'><img className='twitterAvi' alt={`User ${this.props.user.username}'s avatar`} src={this.props.user.picture}/><span>@{this.props.user.username}</span></a> : null}
-							<Link to='/' onClick={this.handleClickItem('n')} className='navbar-item'>Home</Link>
-							{this.props.isAuthed === true ? <Link to='/newbook' onClick={this.handleClickItem('n')} className='navbar-item'>New Book</Link> : null}
+							<Link to='/' onClick={() => {this.handleClickItem('n')}} className='navbar-item'>Home</Link>
+							{this.props.isAuthed === true ? <Link to='/newbook' onClick={() => {this.handleClickItem('n')}} className='navbar-item'>New Book</Link> : null}
 							{this.props.isAuthed === true ? <Link to='/' onClick={this.logout} className='navbar-item'>Logout</Link> : <TwitterLogin className='navbar-item twitterer' loginUrl={`${API_URL}/api/auth/twitter`} onFailure={this.handleFail} onSuccess={this.handleSuccess} requestTokenUrl={`${API_URL}/api/auth/twitter/reverse`} /> }
 						</div>
 					</div>
