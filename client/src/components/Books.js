@@ -18,10 +18,11 @@ export default class Books extends Component {
 			this.setState({
 				books
 			}, () => {
+				console.log(this.state.books);
 				this.setState({
 					displayBooks: this.state.books.slice(this.state.page * this.state.perPage, this.state.page * this.state.perPage + this.state.perPage),
 					numPages: Math.ceil(this.state.books.length/this.state.perPage)
-				})
+				}, () => {console.log(this.state.numPages)})
 			});
 		});
 	}
