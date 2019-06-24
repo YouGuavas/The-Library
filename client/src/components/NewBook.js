@@ -8,7 +8,6 @@ export default class NewBook extends Component {
 			title: '',
 			author: '',
 			published: '',
-			finished: '',
 			synopsis: '',
 			'notes': []
 		}
@@ -56,12 +55,6 @@ export default class NewBook extends Component {
 						<label className='title' onClick={() => this.toggleHidden('published')}>Published on(date)</label>
 						<div className='control'>
 							<input onChange={this.handleChange} id='published' className='input hidden' type='text'/>
-						</div>
-					</div>
-					<div className='field'>
-						<label className='title' onClick={() => this.toggleHidden('finished')}>Date Finished Reading</label>
-						<div className='control'>
-							<input onChange={this.handleChange} id='finished' className='input hidden' type='text'/>
 						</div>
 					</div>
 					<div className='field'>
