@@ -9,12 +9,12 @@ environment === 'dev' || 'development' ? API_URL = 'https://the-library-of-guava
 
 
 export default class Nav extends Component {
-	handleClick = (cName) => {
+	handleClick = () => {
 		document.getElementById('burger').classList.toggle('is-active');
 		document.getElementById('navMenu').classList.toggle('is-active');
 		//toggle hamburger menu
 	}
-	handleClickItem = () => {
+	handleClickItem = (cName) => {
 		cName === 'main' ? (
 			document.getElementById('navMenu').classList.contains('is-active') ? (
 				document.getElementById('burger').classList.toggle('is-active'),
