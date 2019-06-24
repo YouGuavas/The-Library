@@ -25,9 +25,9 @@ app.use(cors(corsOption));
 app.use(express.static(path.join(__dirname, "client", filePath)))
 
 app.use('/api', routes);
-app.get("*", (req, res) => {
+/*app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", 'public', "index.html"));
-});
+});*/
 app.listen(port, () => {
 	console.log(`Your app is now running on port: ${port}`);
 })

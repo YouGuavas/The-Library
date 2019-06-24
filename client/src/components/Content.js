@@ -7,7 +7,7 @@ export default class Content extends Component {
 		<div>
 			<h1 className='title'>Welcome to The Library!</h1>
 			<p>
-				A collection of every book I've read since April, 2019.
+				Post and comment on books!
 			</p>
 			<Books/>
 		</div>
