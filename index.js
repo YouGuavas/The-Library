@@ -11,6 +11,7 @@ const environment = process.env.NODE_ENV;
 let filePath;
 
 environment === 'dev' || 'development' ? filePath = 'build' : filePath = 'build';
+console.log(filePath);
 
 const corsOption = {
 	origin: true,

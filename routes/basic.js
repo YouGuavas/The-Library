@@ -6,6 +6,7 @@ const passport = require('passport');
 const passportConfig = require('../passport');
 passportConfig();
 const request = require('request');
+const dotenv = require('dotenv').config();
 
 const jwt = require('jsonwebtoken');
 const mongod = require('mongodb');
