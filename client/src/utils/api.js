@@ -34,5 +34,5 @@ function getBookData(bookID) {
 
 function newBook(data) {
 	const url = `${BASE_URL}/api/newbook`;
-	return axios.post(url, {uid: data.user.id, title: data.title, author: data.author, published: data.published, finished: data.finished, synopsis: data.synopsis, notes: data.notes}).then(res=>res.data);
+	return axios.post(url, {uid: data.user.id, title: data.title, author: data.author, synopsis: data.synopsis, notes: data.notes}).then(res=>res.data);
 };

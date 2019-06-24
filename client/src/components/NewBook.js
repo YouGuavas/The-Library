@@ -7,7 +7,6 @@ export default class NewBook extends Component {
 		this.state = {
 			title: '',
 			author: '',
-			published: '',
 			synopsis: '',
 			'notes': []
 		}
@@ -49,12 +48,6 @@ export default class NewBook extends Component {
 						<label className='title' onClick={() => this.toggleHidden('author')}>Author *</label>
 						<div className='control'>
 							<input onChange={this.handleChange} id='author' className='input' type='text'/>
-						</div>
-					</div>
-					<div className='field'>
-						<label className='title' onClick={() => this.toggleHidden('published')}>Published on(date)</label>
-						<div className='control'>
-							<input onChange={this.handleChange} id='published' className='input hidden' type='text'/>
 						</div>
 					</div>
 					<div className='field'>
