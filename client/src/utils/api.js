@@ -1,9 +1,9 @@
 import axios from 'axios';
-const environment = 'dev';
+const environment = '';
 
 let BASE_URL; 
 
-environment === 'dev' ? BASE_URL = 'http://localhost:3333' : BASE_URL = '';
+environment === 'dev' ? BASE_URL = 'http://localhost:3333' : BASE_URL = 'https://the-library-of-guavas.herokuapp.com/';
 
 export {getBooksData, newBook, getBookData, deleteBook, newComment, deleteComment};
 
