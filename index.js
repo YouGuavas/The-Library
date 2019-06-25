@@ -22,7 +22,7 @@ const corsOption = {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors(corsOption));
-app.use('/', express.static(path.join(__dirname, "client", filePath)))
+app.use(express.static(path.join(__dirname, "client", filePath)))
 
 app.use('/api', routes);
 app.get("*", (req, res) => {
