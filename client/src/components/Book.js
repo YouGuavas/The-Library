@@ -31,27 +31,27 @@ export default class Book extends Component {
 		const search = window.location.pathname.split('/')[2];
 		this.getBook(search, () => {
 			if (typeof localStorage['authData'] !== 'undefined') if (localStorage['authData'] !== 'undefined') {
-				this.setState(JSON.parse(localStorage['authData']), () => {
+				this.setState(JSON.parse(localStorage['authData'], {isAuthed: true}), () => {
 				let isOwner;
 				JSON.parse(localStorage['authData']).user.id === this.state.userId ? isOwner = true : isOwner = false
-				this.setState({isOwner}); 
+				this.setState({isOwner});
 			});
 			}
 		});
 	}
 	render() {
-		const {title, author, published, finished, synopsis, notes, isOwner} = this.state;
+		const {title, author, published, finished, synopsis, notes, isOwner, isAuthed} = this.state;
 		return(
 			<div name={title}>
 				{title ? <h1 className='title'>{title}</h1> : null /* display title if it exists */}
 				{author ? <h2 className='title'>Written by: {author}</h2> : null /* display author if it exists */}
 				{published ? <h3 className='title hideWhenSmall'>Published on: {published}</h3> : null /* display Published date if it exists */ }
 				{finished ? <h3 className='title hideWhenSmall'>Finished reading on: {finished}</h3> : null /* display the date finished reading if it exists */ }
-				{synopsis ? synopsis.split('\n').map((item,index) => <p key={index}>{item}<br/></p> ): null /* display synopsis if it exists */}
+				{synopsis ? <article className='synopsis'>{synopsis.split('\n').map((item,index) => <p key={index}>{item}<br/></p> )}</article>: null /* display synopsis if it exists */}
 				{notes ? notes.indexOf('\n') !== -1 ? notes.split('\n').map((item, index) => { return <p key={index}>{item}</p> }) : <p>{notes}</p> : null /* display notes if they exist */ }
 				
 				{isOwner ? <button className='button is-danger' onClick={this.handleDelete}>Delete</button> : null /* only allow authed users to delete */ }
-				{title ? <Comments comments={this.state.comments || ['']} book={this.state.bID} bookOwner={this.state.userId}/> : null /* display comments if book exists */ }
+				{title ? (this.state.comments.length === 0 && isAuthed ? <Comments comments={this.state.comments || ['']} book={this.state.bID} bookOwner={this.state.userId}/> : this.state.comments.length > 0 ? <Comments comments={this.state.comments || ['']} book={this.state.bID} bookOwner={this.state.userId}/> : null ): null /* display comments if book exists */ }
 			</div>
 			)
 	}
