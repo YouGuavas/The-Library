@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, "client", filePath)));
 
 app.use('/api', routes);
 app.get("*", (req, res) => {
-    res.sendFile("index.html");
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 app.listen(port, () => {
 	console.log(`Your app is now running on port: ${port}`);
