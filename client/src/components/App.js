@@ -55,8 +55,8 @@ export default class App extends Component {
 									<div className='columns'>
 										<div className='column is-12 has-text-centered'>
 											<Route exact path='/' component={Content}/>
-											<Route path='/newbook' component={NewBook}/>
-											<Route path='/book' component={Book}/>
+											<Route path='/newbook' render={(props) => <NewBook {...props} isAuthed={isAuthed} />}/>
+											<Route path='/book' render={(props) => <Book {...props} isAuthed={isAuthed} />}/>
 										</div>
 									</div>
 								</div>

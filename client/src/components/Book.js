@@ -3,9 +3,9 @@ import {getBookData, deleteBook} from '../utils/api';
 import Comments from './Comments';
 
 export default class Book extends Component {
-	constructor() {
+	constructor(props) {
 		super();
-		this.state = {};
+		this.state = {isAuthed: props.isAuthed};
 	}
 	getBook = (bookID, cb) => {
 		getBookData(bookID).then(res => {
@@ -31,7 +31,7 @@ export default class Book extends Component {
 		const search = window.location.pathname.split('/')[2];
 		this.getBook(search, () => {
 			if (typeof localStorage['authData'] !== 'undefined') if (localStorage['authData'] !== 'undefined') {
-				this.setState(JSON.parse(localStorage['authData'], {isAuthed: true}), () => {
+				this.setState(JSON.parse(localStorage['authData']), () => {
 				let isOwner;
 				JSON.parse(localStorage['authData']).user.id === this.state.userId ? isOwner = true : isOwner = false
 				this.setState({isOwner});

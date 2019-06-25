@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import {newBook} from '../utils/api';
 
 export default class NewBook extends Component {
-	constructor() {
+	constructor(props) {
 		super();
 		this.state = {
 			title: '',
 			author: '',
 			synopsis: '',
-			'notes': []
+			'notes': [],
+			isAuthed: props.isAuthed
 		}
 	}
 	handleChange = e => {
