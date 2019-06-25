@@ -7,7 +7,7 @@ export default class Book extends Component {
 		super();
 		this.state = {};
 	}
-	getBook = (bookID) => {
+	getBook = (bookID, cb) => {
 		getBookData(bookID).then(res => {
 			const title = res.data.title;
 			const author = res.data.author;
@@ -20,7 +20,7 @@ export default class Book extends Component {
 			const userId = res.data.uid;
 			this.setState({
 				title, author, published, finished, synopsis, notes, bID, comments, userId
-			})
+			}, () => {cb()})
 		})
 	}
 	handleDelete = () => {
@@ -30,11 +30,13 @@ export default class Book extends Component {
 	componentDidMount() {
 		const search = window.location.pathname.split('/')[2];
 		this.getBook(search, () => {
-			if (typeof localStorage['authData'] !== 'undefined') this.setState(JSON.parse(localStorage['authData']), () => {
+			if (typeof localStorage['authData'] !== 'undefined') if (localStorage['authData'] !== 'undefined') {
+				this.setState(JSON.parse(localStorage['authData']), () => {
 				let isOwner;
 				JSON.parse(localStorage['authData']).user.id === this.state.userId ? isOwner = true : isOwner = false
 				this.setState({isOwner}); 
 			});
+			}
 		});
 	}
 	render() {

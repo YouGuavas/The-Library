@@ -40,7 +40,7 @@ export default class App extends Component {
 			})
 	}
 	componentDidMount() {
-		if (typeof localStorage['authData'] !== 'undefined') this.setState(JSON.parse(localStorage['authData']));
+		if (typeof localStorage['authData'] !== 'undefined') if (localStorage['authData'] !== 'undefined') this.setState(JSON.parse(localStorage['authData']));
 	}
 	render() {
 		const {isAuthed} = this.state;

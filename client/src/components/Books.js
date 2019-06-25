@@ -9,7 +9,7 @@ export default class Books extends Component {
 		this.state = {
 			books: [],
 			page:0,
-			perPage: 3,
+			perPage: 5,
 			displayBooks: [] 
 		}
 	}

@@ -26,7 +26,7 @@ export default class Comments extends Component {
 	render() {
 		const comments = this.state.comments;
 		let user, isOwner;
-		if (typeof localStorage['authData'] !== 'undefined') {
+		if (typeof localStorage['authData'] !== 'undefined') if (localStorage['authData'] !== 'undefined') {
 			user = JSON.parse(localStorage['authData']).user;
 			isOwner = JSON.parse(localStorage['authData']).user === this.props.bookOwner;
 		}
@@ -110,17 +110,17 @@ class Comment extends Component {
 		deleteComment(search, this.state.order);
 	}
 	componentDidMount() {
-		if (typeof localStorage['authData'] !== 'undefined') {
-			let isOwner;
-			JSON.parse(localStorage['authData']).user.id === this.props.item.user.id ? isOwner = true : isOwner = false 
-			this.setState(JSON.parse(localStorage['authData']), () => {
-				this.setState({isOwner});
-			});
-		}
+			if (typeof localStorage['authData'] !== 'undefined') if (localStorage['authData'] !== 'undefined') {
+				let isOwner;
+				JSON.parse(localStorage['authData']).user.id === this.props.item.user.id ? isOwner = true : isOwner = false 
+				this.setState(JSON.parse(localStorage['authData']), () => {
+					this.setState({isOwner});
+				});
+			}
 	}
 	render() {
 		const {comment, user} = this.props.item;
-		const isOwner = this.state;
+		const {isOwner} = this.state;
 		return(
 			<article className='media'>
 				<figure className='media-left'>
