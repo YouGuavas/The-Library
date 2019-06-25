@@ -25,8 +25,11 @@ export default class Comments extends Component {
 	}
 	render() {
 		const comments = this.state.comments;
-		const user = JSON.parse(localStorage['authData']).user;
-		const isOwner = JSON.parse(localStorage['authData']).user === this.props.bookOwner;
+		let user, isOwner;
+		if (typeof localStorage['authData'] !== 'undefined') {
+			user = JSON.parse(localStorage['authData']).user;
+			isOwner = JSON.parse(localStorage['authData']).user === this.props.bookOwner;
+		}
 		return(
 			<div className='comments books'>
 				<h3 className='title'>Comments</h3>
@@ -37,7 +40,7 @@ export default class Comments extends Component {
 					))
 						) : console.log(comments) : console.log(comments)
 			}
-			{user.id ? <NewComment isBookOwner={isOwner} user={user} onComment={(comment) => {this.handleComment(comment)}}/> : null}
+			{user ? <NewComment isBookOwner={isOwner} user={user} onComment={(comment) => {this.handleComment(comment)}}/> : null}
 				</div>
 			)
 	}

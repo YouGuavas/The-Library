@@ -91,7 +91,7 @@ export default class Books extends Component {
 					<Item title={book.title} author={book.author} url={book._id} key={index}/>
 				))) : null
 				}
-			<Paginator tabindex='0' setPage={(pP, nP) => {this.setPage(pP, nP)}} decrementPage={this.decrementPage} incrementPage={this.incrementPage} numPages={this.state.numPages}/>
+			<div className='pagination-div'><Paginator tabindex='0' setPage={(pP, nP) => {this.setPage(pP, nP)}} decrementPage={this.decrementPage} incrementPage={this.incrementPage} numPages={this.state.numPages}/></div>
 			</div>
 			)
 	}
@@ -110,7 +110,7 @@ class Paginator extends Component {
 		const links = this.createLinks();
 		return (
 			<nav className='pagination is-centered'>
-				<button className='pagination-previous' onClick={this.props.decrementPage}>Previous</button>
+				<button className='pagination-previous' onClick={this.props.decrementPage}>Last</button>
 				<button className='pagination-next' onClick={this.props.incrementPage}>Next</button>
 				<ul className='pagination-list'>
 				{ links.map((item, i) => (
