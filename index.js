@@ -11,7 +11,6 @@ const environment = process.env.NODE_ENV;
 let filePath;
 
 environment === 'dev' || 'development' ? filePath = 'build' : filePath = 'build';
-console.log(filePath);
 
 const corsOption = {
 	origin: true,
@@ -23,7 +22,7 @@ const corsOption = {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors(corsOption));
-app.use(express.static(path.join(__dirname, "client", filePath)))
+app.use('/', express.static(path.join(__dirname, "client", filePath)))
 
 app.use('/api', routes);
 app.get("*", (req, res) => {
