@@ -40,7 +40,7 @@ export default class Comments extends Component {
 					))
 						) : console.log(comments) : console.log(comments)
 			}
-			{user ? <NewComment isBookOwner={isOwner} user={user} onComment={(comment) => {this.handleComment(comment)}}/> : null}
+			{user ? user.id ? <NewComment isBookOwner={isOwner} user={user} onComment={(comment) => {this.handleComment(comment)}}/> : null : null}
 				</div>
 			)
 	}
