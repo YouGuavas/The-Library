@@ -16,7 +16,6 @@ export default class Books extends Component {
 	getBooks = () => {
 		getBooksData().then(
 			books => {
-			console.log(books);
 			this.setState({
 				books
 			}, () => {

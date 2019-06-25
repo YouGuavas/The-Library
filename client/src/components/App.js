@@ -32,7 +32,7 @@ export default class App extends Component {
 		console.log(err);
 	}
 	logout = () => {
-		localStorage.setItem('authData', JSON.stringify({isAuthed: false, user: {id: null}, token: ''}))
+		localStorage.removeItem('authData');
 			this.setState({
 				isAuthed: false,
 				user: null,
