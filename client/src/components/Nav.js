@@ -5,7 +5,7 @@ import TwitterLogin from 'react-twitter-auth';
 const environment = process.env.NODE_ENV;
 let API_URL;
 
-environment === 'dev' || 'development' ? API_URL = 'http://localhost:3333' : API_URL = 'https://the-library-of-guavas.herokuapp.com';
+(environment === ('dev' || 'development')) ? API_URL = 'http://localhost:3333' : API_URL = '';
 
 
 export default class Nav extends Component {
