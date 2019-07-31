@@ -4,7 +4,7 @@ const dotenv = require('dotenv').config();
 const environment = process.env.NODE_ENV;
 let BASE_URL; 
 
-environment === 'development' || 'dev' ? BASE_URL = 'http://localhost:3333' : BASE_URL = '';
+(environment === ('development' || 'dev')) ? BASE_URL = 'http://localhost:3333' : BASE_URL = '';
 export {getBooksData, newBook, getBookData, deleteBook, newComment, deleteComment};
 
 function deleteBook(bookID) {
