@@ -40,11 +40,11 @@ export default class Nav extends Component {
 				<nav className='navbar is-dark'>
 					<div className='navbar-brand'>
 						<Link to='/' onClick={() => {this.handleClickItem('main')}} className='navbar-item'>The Library</Link>
-						<span id='burger' className="navbar-burger burger" onClick={this.handleClick}>
+						<button aria-label='Navigation Menu' aria-expanded='false' id='burger' className="navbar-burger burger" onClick={this.handleClick}>
 		          <span></span>
 		          <span></span>
 		          <span></span>
-						</span>
+						</button>
 					</div>
 					<div id='navMenu' className='navbar-menu'>
 						<div className='navbar-end'>
